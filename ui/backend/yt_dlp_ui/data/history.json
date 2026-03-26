@@ -73,9 +73,29 @@
       "status": "completed",
       "error": null,
       "filename": "Queen - Killer Queen (Top Of The Pops, 1974) [2ZBtPf7FOoM].mp4",
-      "file_ready": true,
+      "file_ready": false,
       "created_at": "2026-03-26T20:28:49.816377+00:00",
       "finished_at": "2026-03-26T20:28:51.954659+00:00"
+    },
+    {
+      "id": "4615de9e-237e-4c57-98f4-02a95c210d52",
+      "url": "https://www.youtube.com/watch?v=4mUEgj6JXoc&t=4436s",
+      "status": "completed",
+      "error": null,
+      "filename": "HOSTING ADMIN ABUSE IN MY GAME [4mUEgj6JXoc].mp4",
+      "file_ready": true,
+      "created_at": "2026-03-26T20:30:57.080779+00:00",
+      "finished_at": "2026-03-26T20:38:09.608567+00:00"
+    },
+    {
+      "id": "60e0568e-d21f-4047-aac0-adddafa7be1a",
+      "url": "https://www.youtube.com/watch?v=4mUEgj6JXoc&t=4436s",
+      "status": "completed",
+      "error": null,
+      "filename": "HOSTING ADMIN ABUSE IN MY GAME [4mUEgj6JXoc].mp4",
+      "file_ready": true,
+      "created_at": "2026-03-26T20:30:45.428363+00:00",
+      "finished_at": "2026-03-26T20:38:09.610188+00:00"
     }
   ]
 }

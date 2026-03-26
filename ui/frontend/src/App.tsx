@@ -72,6 +72,8 @@ export default function App() {
   const [completed, setCompleted] = useState<DownloadRecord[]>([])
   const [downloadBusy, setDownloadBusy] = useState(false)
   const [ffmpegAvailable, setFfmpegAvailable] = useState<boolean | null>(null)
+  // IDs started in this browser session — only these get auto-downloaded
+  const myDownloadIds = useRef(new Set<string>())
   const autoDownloadedIds = useRef(new Set<string>())
 
   const selectedPreset = useMemo(
@@ -107,9 +109,11 @@ export default function App() {
       for (const a of r.active) next[a.id] = a
       setActiveMap(next)
       setCompleted(r.completed)
-      // Auto-trigger browser download for any ready file
+      // Auto-trigger browser download only for downloads started in this session
       for (const rec of r.completed) {
-        if (rec.file_ready) triggerBrowserDownload(rec.id)
+        if (rec.file_ready && myDownloadIds.current.has(rec.id)) {
+          triggerBrowserDownload(rec.id)
+        }
       }
     } catch {
       /* ignore */
@@ -143,7 +147,8 @@ export default function App() {
       }
       if (['finished', 'error', 'cancelled'].includes(msg.status ?? '')) {
         const { [msg.download_id]: _, ...rest } = prev
-        // Give the server a moment to register the file before polling
+        // Give the server a moment to register the file, then poll
+        // (triggerBrowserDownload runs inside refreshDownloads for session IDs)
         setTimeout(() => void refreshDownloads(), 800)
         return rest
       }
@@ -173,7 +178,8 @@ export default function App() {
     setDownloadBusy(true)
     try {
       const body = buildDownloadRequest(url.trim(), selectedPreset, settings)
-      await postDownload(body)
+      const res = await postDownload(body)
+      myDownloadIds.current.add(res.download_id)
       await refreshDownloads()
     } catch (e) {
       alert(e instanceof Error ? e.message : String(e))
