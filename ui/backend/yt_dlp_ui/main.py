@@ -10,6 +10,7 @@ from typing import Any
 from fastapi import BackgroundTasks, FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 from yt_dlp_ui.download_manager import DownloadManager, _ffmpeg_available, run_info
 from yt_dlp_ui.models import (
@@ -122,7 +123,11 @@ def _dm() -> DownloadManager:
 
 @app.get("/", response_class=HTMLResponse)
 async def root() -> str:
-    """API only on this port; the Vite UI runs on port 8001."""
+    """Shown only when the frontend has not been built yet."""
+    if _FRONTEND_DIST.is_dir():
+        # Serve index.html directly — the SPA mount handles it normally,
+        # but FastAPI routes take precedence over mounts so we forward here.
+        return FileResponse(str(_FRONTEND_DIST / "index.html"))
     return """<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><title>yt-dlp UI API</title></head>
@@ -132,7 +137,8 @@ async def root() -> str:
   <p><strong>The web UI</strong> is the Vite project. In another terminal:</p>
   <pre style="background: #f4f4f5; padding: 1rem; border-radius: 8px;">cd ui/frontend
 bun dev</pre>
-  <p>Then open in the browser: <a href="http://127.0.0.1:8001">http://127.0.0.1:8001</a></p>
+  <p>Or build and serve everything together:</p>
+  <pre style="background: #f4f4f5; padding: 1rem; border-radius: 8px;">./ui/start.sh</pre>
   <p>Interactive API docs: <a href="/docs">/docs</a></p>
 </body>
 </html>"""
@@ -220,3 +226,25 @@ async def ws_progress(websocket: WebSocket) -> None:
         pass
     finally:
         connection_manager.disconnect(websocket)
+
+
+# ── SPA static file serving ───────────────────────────────────────────────────
+# Serve the built Vite frontend (ui/frontend/dist/) when it exists.
+# This allows a single `uvicorn` process to serve both the API and the UI,
+# which is required when exposing the app via a tunnel on a single port.
+
+_FRONTEND_DIST = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
+
+
+class _SPAStaticFiles(StaticFiles):
+    """Serve static files; fall back to index.html for unknown paths (SPA routing)."""
+
+    async def get_response(self, path: str, scope: Any) -> Any:  # type: ignore[override]
+        try:
+            return await super().get_response(path, scope)
+        except Exception:  # noqa: BLE001
+            return await super().get_response("index.html", scope)
+
+
+if _FRONTEND_DIST.is_dir():
+    app.mount("/", _SPAStaticFiles(directory=str(_FRONTEND_DIST), html=True), name="spa")
