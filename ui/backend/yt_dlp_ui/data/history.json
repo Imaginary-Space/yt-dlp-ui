@@ -1,0 +1,71 @@
+{
+  "completed": [
+    {
+      "id": "e8e308cb-21aa-4f8b-8e72-d2bef79155d1",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": null,
+      "created_at": "2026-03-26T19:33:10.743442+00:00",
+      "finished_at": "2026-03-26T19:33:12.554766+00:00"
+    },
+    {
+      "id": "6878e0a7-e558-45d9-b5a5-ca61abc87af9",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": null,
+      "created_at": "2026-03-26T19:36:17.256298+00:00",
+      "finished_at": "2026-03-26T19:36:19.062417+00:00"
+    },
+    {
+      "id": "5f0dcbc6-e34c-45ef-a2d9-6d7cc1b01086",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": null,
+      "created_at": "2026-03-26T19:37:08.778803+00:00",
+      "finished_at": "2026-03-26T19:37:10.897291+00:00"
+    },
+    {
+      "id": "53af84bf-0141-4db2-82a0-c33fdafaa4d7",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": "Queen - Killer Queen (Top Of The Pops, 1974) [2ZBtPf7FOoM].f396.mp4",
+      "file_ready": false,
+      "created_at": "2026-03-26T20:11:06.531255+00:00",
+      "finished_at": "2026-03-26T20:11:08.139966+00:00"
+    },
+    {
+      "id": "ab593a74-cc51-42c3-81e0-af1ddb64ac43",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": "Queen - Killer Queen (Top Of The Pops, 1974) [2ZBtPf7FOoM].f396.mp4",
+      "file_ready": true,
+      "created_at": "2026-03-26T20:13:38.594666+00:00",
+      "finished_at": "2026-03-26T20:13:40.375345+00:00"
+    },
+    {
+      "id": "ca1c3154-c66b-4888-83cb-0f70d2258bdc",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": "Queen - Killer Queen (Top Of The Pops, 1974) [2ZBtPf7FOoM].f396.mp4",
+      "file_ready": true,
+      "created_at": "2026-03-26T20:14:33.443604+00:00",
+      "finished_at": "2026-03-26T20:14:35.101855+00:00"
+    },
+    {
+      "id": "08eddf1e-f38f-4d19-87e1-c404c34ab83a",
+      "url": "https://www.youtube.com/watch?v=2ZBtPf7FOoM",
+      "status": "completed",
+      "error": null,
+      "filename": "Queen - Killer Queen (Top Of The Pops, 1974) [2ZBtPf7FOoM].mp4",
+      "file_ready": true,
+      "created_at": "2026-03-26T20:16:59.537563+00:00",
+      "finished_at": "2026-03-26T20:17:01.637262+00:00"
+    }
+  ]
+}
