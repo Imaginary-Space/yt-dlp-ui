@@ -17,7 +17,7 @@ import { DownloadHistory } from './components/DownloadHistory'
 import { DownloadQueue } from './components/DownloadQueue'
 import { FormatSelector } from './components/FormatSelector'
 import { SettingsPanel, type SettingsState } from './components/Settings'
-import { UrlInput } from './components/UrlInput'
+import { isValidUrl, UrlInput } from './components/UrlInput'
 import { VideoInfo } from './components/VideoInfo'
 import { useProgressWebSocket, type ProgressPayload } from './hooks/useWebSocket'
 
@@ -128,6 +128,7 @@ export default function App() {
 
   const onProgress = useCallback((msg: ProgressPayload) => {
     if (msg.type !== 'progress' || !msg.download_id) return
+    if (!myDownloadIds.current.has(msg.download_id)) return
     setActiveMap((prev) => {
       const cur = prev[msg.download_id]
       const base: DownloadRecord = cur ?? {
@@ -197,7 +198,11 @@ export default function App() {
     }
   }
 
-  const activeList = Object.values(activeMap)
+  const activeList = Object.values(activeMap).filter((d) =>
+    myDownloadIds.current.has(d.id),
+  )
+  const myCompleted = completed.filter((d) => myDownloadIds.current.has(d.id))
+  const urlValid = !url.trim() || isValidUrl(url.trim())
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -265,7 +270,7 @@ export default function App() {
             <button
               type="button"
               onClick={handleDownload}
-              disabled={!url.trim() || downloadBusy}
+              disabled={!url.trim() || !urlValid || downloadBusy}
               className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-[var(--accent)] px-8 py-4 text-[15px] font-medium text-white transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
             >
               {downloadBusy ? (
@@ -283,9 +288,9 @@ export default function App() {
             </section>
           )}
 
-          {completed.length > 0 && (
+          {myCompleted.length > 0 && (
             <section className="animate-slide-up border-t border-[var(--border)] pt-8">
-              <DownloadHistory items={completed} />
+              <DownloadHistory items={myCompleted} />
             </section>
           )}
         </div>

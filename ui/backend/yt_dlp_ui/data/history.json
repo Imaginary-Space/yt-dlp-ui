@@ -96,6 +96,56 @@
       "file_ready": true,
       "created_at": "2026-03-26T20:30:45.428363+00:00",
       "finished_at": "2026-03-26T20:38:09.610188+00:00"
+    },
+    {
+      "id": "0a51ff92-90cf-45bc-823d-f1559a7f5b0c",
+      "url": "https://www.youtube.com/shorts/Y-JJt7Q1Ud4",
+      "status": "completed",
+      "error": null,
+      "filename": "Dwarfs swinging haymakers in the boxing ring [Y-JJt7Q1Ud4].mp4",
+      "file_ready": false,
+      "created_at": "2026-03-26T20:57:23.834450+00:00",
+      "finished_at": "2026-03-26T20:57:26.266850+00:00"
+    },
+    {
+      "id": "aa799e7a-766f-469c-b286-354cc165b2eb",
+      "url": "https://www.youtube.com/watch?v=YtNpLS4GQOA&list=RDYtNpLS4GQOA",
+      "status": "completed",
+      "error": null,
+      "filename": "MARCHA PERONISTA [YtNpLS4GQOA].m4a",
+      "file_ready": false,
+      "created_at": "2026-03-26T21:34:15.310488+00:00",
+      "finished_at": "2026-03-26T21:34:19.564843+00:00"
+    },
+    {
+      "id": "f97c38de-2808-4cab-948e-93c1d710ab3d",
+      "url": "https://www.youtube.com/watch?v=YtNpLS4GQOA&list=RDYtNpLS4GQOA",
+      "status": "completed",
+      "error": null,
+      "filename": "MARCHA PERONISTA [YtNpLS4GQOA].m4a",
+      "file_ready": false,
+      "created_at": "2026-03-26T21:36:49.373862+00:00",
+      "finished_at": "2026-03-26T21:36:53.706022+00:00"
+    },
+    {
+      "id": "0f6b3a4c-da9a-4f4d-8fae-b04cbff1ed46",
+      "url": "{{}}",
+      "status": "failed",
+      "error": "yt-dlp exited with code 1",
+      "filename": null,
+      "file_ready": false,
+      "created_at": "2026-03-26T21:37:49.619442+00:00",
+      "finished_at": "2026-03-26T21:37:50.203518+00:00"
+    },
+    {
+      "id": "9ef3d5e0-35f0-4c4c-b525-d4313b753702",
+      "url": "{{}}aaa",
+      "status": "failed",
+      "error": "yt-dlp exited with code 1",
+      "filename": null,
+      "file_ready": false,
+      "created_at": "2026-03-26T21:38:21.957303+00:00",
+      "finished_at": "2026-03-26T21:38:22.560797+00:00"
     }
   ]
 }
